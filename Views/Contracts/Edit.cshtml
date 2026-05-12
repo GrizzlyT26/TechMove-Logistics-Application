@@ -1,0 +1,205 @@
+﻿@model TechMove_Logistics_Application.Models.Contract
+
+@{
+    ViewData["Title"] = "Edit Contract";
+}
+
+<div class="container py-5">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h1 class="fw-bold display-5 text-primary">
+                Edit Contract
+            </h1>
+
+            <p class="text-muted fs-5">
+                Update and manage logistics contract information.
+            </p>
+
+        </div>
+
+        <a asp-action="Index"
+           class="btn btn-dark btn-lg rounded-3 shadow-sm">
+
+            ← Back to Contracts
+
+        </a>
+
+    </div>
+
+    <!-- MAIN CARD -->
+    <div class="card border-0 shadow-lg rounded-4">
+
+        <div class="card-body p-5">
+
+            <form asp-action="Edit">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="alert alert-danger rounded-3">
+                </div>
+
+                <input type="hidden"
+                       asp-for="Id" />
+
+                <!-- CLIENT -->
+                <div class="mb-4">
+
+                    <label asp-for="ClientId"
+                           class="form-label fw-semibold fs-5">
+                        Client
+                    </label>
+
+                    <select asp-for="ClientId"
+                            class="form-select form-select-lg rounded-3"
+                            asp-items="ViewBag.ClientId">
+                    </select>
+
+                    <span asp-validation-for="ClientId"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+                <!-- START DATE -->
+                <div class="row">
+
+                    <div class="col-md-6 mb-4">
+
+                        <label asp-for="StartDate"
+                               class="form-label fw-semibold fs-5">
+                            Start Date
+                        </label>
+
+                        <input asp-for="StartDate"
+                               type="datetime-local"
+                               class="form-control form-control-lg rounded-3" />
+
+                        <span asp-validation-for="StartDate"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <label asp-for="EndDate"
+                               class="form-label fw-semibold fs-5">
+                            End Date
+                        </label>
+
+                        <input asp-for="EndDate"
+                               type="datetime-local"
+                               class="form-control form-control-lg rounded-3" />
+
+                        <span asp-validation-for="EndDate"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- STATUS -->
+                <div class="mb-4">
+
+                    <label asp-for="Status"
+                           class="form-label fw-semibold fs-5">
+                        Contract Status
+                    </label>
+
+                    <select asp-for="Status"
+                            class="form-select form-select-lg rounded-3">
+
+                        <option value="">-- Select Status --</option>
+
+                        <option>Draft</option>
+                        <option>Active</option>
+                        <option>Expired</option>
+                        <option>On Hold</option>
+
+                    </select>
+
+                    <span asp-validation-for="Status"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+                <!-- SERVICE LEVEL -->
+                <div class="mb-4">
+
+                    <label asp-for="ServiceLevel"
+                           class="form-label fw-semibold fs-5">
+                        Service Level Agreement
+                    </label>
+
+                    <select asp-for="ServiceLevel"
+                            class="form-select form-select-lg rounded-3">
+
+                        <option value="">-- Select Service Level --</option>
+
+                        <option>Basic</option>
+                        <option>Standard</option>
+                        <option>Premium</option>
+                        <option>Enterprise</option>
+
+                    </select>
+
+                    <span asp-validation-for="ServiceLevel"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+                <!-- AGREEMENT FILE -->
+                <div class="mb-5">
+
+                    <label asp-for="AgreementFilePath"
+                           class="form-label fw-semibold fs-5">
+                        Agreement File
+                    </label>
+
+                    <input asp-for="AgreementFilePath"
+                           class="form-control form-control-lg rounded-3" />
+
+                    <span asp-validation-for="AgreementFilePath"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="d-flex gap-3">
+
+                    <button type="submit"
+                            class="btn btn-primary btn-lg px-5 shadow rounded-3">
+
+                        Save Changes
+
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-outline-secondary btn-lg rounded-3">
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

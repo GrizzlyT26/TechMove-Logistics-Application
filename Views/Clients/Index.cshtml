@@ -1,0 +1,231 @@
+﻿@model IEnumerable<TechMove_Logistics_Application.Models.Client>
+
+@{
+    ViewData["Title"] = "Clients";
+}
+
+<div class="container py-5">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+
+        <div>
+
+            <h1 class="fw-bold display-5 text-primary">
+                Client Management
+            </h1>
+
+            <p class="text-muted fs-5">
+                Manage global logistics clients, contact details, and operational regions.
+            </p>
+
+        </div>
+
+        <a asp-action="Create"
+           class="btn btn-success btn-lg rounded-3 shadow-sm">
+
+            + New Client
+
+        </a>
+
+    </div>
+
+    <!-- MAIN CARD -->
+    <div class="card border-0 shadow-lg rounded-4">
+
+        <div class="card-body p-4">
+
+            <!-- SEARCH + FILTER -->
+            <form method="get">
+
+                <div class="row mb-4 g-3">
+
+                    <!-- SEARCH -->
+                    <div class="col-lg-5 col-md-12">
+
+                        <input type="text"
+                               name="searchString"
+                               value="@Context.Request.Query["searchString"]"
+                               class="form-control form-control-lg rounded-3 shadow-sm"
+                               placeholder="Search client name..." />
+
+                    </div>
+
+                    <!-- REGION FILTER -->
+                    <div class="col-lg-4 col-md-6">
+
+                        <select name="regionFilter"
+                                class="form-select form-select-lg rounded-3 shadow-sm">
+
+                            <option value="">
+                                All Regions
+                            </option>
+
+                            <option value="Africa">Africa</option>
+                            <option value="Europe">Europe</option>
+                            <option value="Asia">Asia</option>
+                            <option value="North America">North America</option>
+                            <option value="South America">South America</option>
+                            <option value="Middle East">Middle East</option>
+                            <option value="Australia">Australia</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- BUTTON -->
+                    <div class="col-lg-3 col-md-6">
+
+                        <button type="submit"
+                                class="btn btn-dark btn-lg w-100 rounded-3 shadow-sm">
+
+                            Search & Filter
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+            <!-- CLIENT TABLE -->
+            <div class="table-responsive">
+
+                <table class="table align-middle table-hover">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>
+                                Client Name
+                            </th>
+
+                            <th>
+                                Contact Details
+                            </th>
+
+                            <th>
+                                Region
+                            </th>
+
+                            <th class="text-center">
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @if (Model.Any())
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <!-- NAME -->
+                                    <td>
+
+                                        <div class="fw-bold text-primary fs-5">
+
+                                            @item.Name
+
+                                        </div>
+
+                                    </td>
+
+                                    <!-- CONTACT -->
+                                    <td>
+
+                                        <span class="text-dark">
+
+                                            @item.ContactDetails
+
+                                        </span>
+
+                                    </td>
+
+                                    <!-- REGION -->
+                                    <td>
+
+                                        <span class="badge bg-primary p-2 px-3 rounded-pill">
+
+                                            @item.Region
+
+                                        </span>
+
+                                    </td>
+
+                                    <!-- ACTIONS -->
+                                    <td class="text-center">
+
+                                        <div class="d-flex justify-content-center gap-2 flex-wrap">
+
+                                            <a asp-action="Edit"
+                                               asp-route-id="@item.Id"
+                                               class="btn btn-sm btn-outline-primary rounded-3">
+
+                                                Edit
+
+                                            </a>
+
+                                            <a asp-action="Details"
+                                               asp-route-id="@item.Id"
+                                               class="btn btn-sm btn-outline-dark rounded-3">
+
+                                                Details
+
+                                            </a>
+
+                                            <a asp-action="Delete"
+                                               asp-route-id="@item.Id"
+                                               class="btn btn-sm btn-outline-danger rounded-3">
+
+                                                Delete
+
+                                            </a>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+
+                                <td colspan="4" class="text-center py-5">
+
+                                    <div class="text-muted">
+
+                                        <h5 class="fw-bold">
+                                            No Clients Found
+                                        </h5>
+
+                                        <p class="mb-0">
+                                            Try adjusting your search or filter criteria.
+                                        </p>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

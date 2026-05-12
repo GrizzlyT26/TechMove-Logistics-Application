@@ -1,0 +1,150 @@
+﻿@model TechMove_Logistics_Application.Models.Client
+
+@{
+    ViewData["Title"] = "Delete Client";
+}
+
+<div class="container py-5">
+
+    <!-- BACK BUTTON -->
+    <div class="mb-4">
+
+        <a asp-action="Index"
+           class="btn btn-outline-secondary rounded-3 shadow-sm">
+
+            ← Back to Clients
+
+        </a>
+
+    </div>
+
+    <!-- DELETE CARD -->
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+        <!-- HEADER -->
+        <div class="bg-danger text-white p-4">
+
+            <h1 class="fw-bold mb-1">
+                Delete Client
+            </h1>
+
+            <p class="mb-0 fs-5">
+                Confirm client removal from the logistics system.
+            </p>
+
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body p-5">
+
+            <!-- WARNING -->
+            <div class="alert alert-danger rounded-3 shadow-sm mb-4">
+
+                <h5 class="fw-bold mb-2">
+                    Warning
+                </h5>
+
+                <p class="mb-0">
+                    This action will permanently remove the client record.
+                    Please verify the details carefully before continuing.
+                </p>
+
+            </div>
+
+            <!-- CLIENT DETAILS -->
+            <div class="row g-4">
+
+                <!-- CLIENT NAME -->
+                <div class="col-md-4">
+
+                    <div class="card border-0 bg-light rounded-4 shadow-sm h-100">
+
+                        <div class="card-body">
+
+                            <small class="text-muted d-block mb-2">
+                                Client Name
+                            </small>
+
+                            <h4 class="fw-bold text-primary mb-0">
+                                @Model.Name
+                            </h4>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CONTACT DETAILS -->
+                <div class="col-md-4">
+
+                    <div class="card border-0 bg-light rounded-4 shadow-sm h-100">
+
+                        <div class="card-body">
+
+                            <small class="text-muted d-block mb-2">
+                                Contact Details
+                            </small>
+
+                            <h5 class="fw-semibold mb-0">
+                                @Model.ContactDetails
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- REGION -->
+                <div class="col-md-4">
+
+                    <div class="card border-0 bg-light rounded-4 shadow-sm h-100">
+
+                        <div class="card-body">
+
+                            <small class="text-muted d-block mb-2">
+                                Region
+                            </small>
+
+                            <span class="badge bg-primary px-4 py-2 fs-6 rounded-pill">
+
+                                @Model.Region
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <form asp-action="Delete" class="mt-5">
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="d-flex gap-3">
+
+                    <input type="submit"
+                           value="Delete Client"
+                           class="btn btn-danger btn-lg px-5 rounded-3 shadow-sm" />
+
+                    <a asp-action="Index"
+                       class="btn btn-outline-dark btn-lg px-5 rounded-3">
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

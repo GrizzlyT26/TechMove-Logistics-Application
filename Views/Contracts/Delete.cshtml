@@ -1,0 +1,191 @@
+﻿@model TechMove_Logistics_Application.Models.Contract
+
+@{
+    ViewData["Title"] = "Delete Contract";
+}
+
+<div class="container py-5">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h1 class="fw-bold display-5 text-danger">
+                Delete Contract
+            </h1>
+
+            <p class="text-muted fs-5">
+                Review the contract details before permanent deletion.
+            </p>
+
+        </div>
+
+        <a asp-action="Index"
+           class="btn btn-dark btn-lg rounded-3 shadow-sm">
+
+            ← Back to Contracts
+
+        </a>
+
+    </div>
+
+    <!-- WARNING ALERT -->
+    <div class="alert alert-danger shadow-sm rounded-4 p-4 mb-4">
+
+        <h4 class="fw-bold mb-2">
+            Warning!
+        </h4>
+
+        <p class="mb-0 fs-5">
+            Are you sure you want to permanently delete this contract?
+            This action cannot be undone.
+        </p>
+
+    </div>
+
+    <!-- DETAILS CARD -->
+    <div class="card border-0 shadow-lg rounded-4">
+
+        <div class="card-body p-5">
+
+            <!-- TOP INFO -->
+            <div class="row mb-5">
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="bg-light rounded-4 p-4 shadow-sm h-100">
+
+                        <h6 class="text-muted text-uppercase">
+                            Client ID
+                        </h6>
+
+                        <h3 class="fw-bold text-primary">
+                            #@Model.Client.Id
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="bg-light rounded-4 p-4 shadow-sm h-100">
+
+                        <h6 class="text-muted text-uppercase">
+                            Contract Status
+                        </h6>
+
+                        <h3 class="fw-bold text-success">
+                            @Model.Status
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="bg-light rounded-4 p-4 shadow-sm h-100">
+
+                        <h6 class="text-muted text-uppercase">
+                            Service Level
+                        </h6>
+
+                        <h3 class="fw-bold text-dark">
+                            @Model.ServiceLevel
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CONTRACT DATES -->
+            <div class="row mb-5">
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="border rounded-4 p-4 shadow-sm">
+
+                        <h5 class="fw-bold text-primary mb-3">
+                            Start Date
+                        </h5>
+
+                        <p class="fs-5 mb-0">
+                            @Model.StartDate
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="border rounded-4 p-4 shadow-sm">
+
+                        <h5 class="fw-bold text-primary mb-3">
+                            End Date
+                        </h5>
+
+                        <p class="fs-5 mb-0">
+                            @Model.EndDate
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- AGREEMENT FILE -->
+            <div class="mb-5">
+
+                <h5 class="fw-bold text-primary mb-3">
+                    Agreement Document
+                </h5>
+
+                <div class="bg-light rounded-4 p-4 shadow-sm">
+
+                    <p class="mb-0 fs-5 text-dark">
+
+                        @Model.AgreementFilePath
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <form asp-action="Delete">
+
+                <input type="hidden"
+                       asp-for="Id" />
+
+                <div class="d-flex gap-3">
+
+                    <button type="submit"
+                            class="btn btn-danger btn-lg px-5 shadow rounded-3">
+
+                        Delete Contract
+
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-outline-secondary btn-lg rounded-3">
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
