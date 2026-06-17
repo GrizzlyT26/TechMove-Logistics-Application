@@ -1,0 +1,35 @@
+﻿name: TechMove Logistics CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore "TechMove Logistics Application.sln"
+
+      - name: Build solution
+        run: dotnet build "TechMove Logistics Application.sln" --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test "TechMove Logistics Application.sln" --configuration Release --no-build --verbosity normal
+
+      - name: Validate Docker Compose file
+        run: docker compose config
+
+      - name: Build Docker images
+        run: docker compose build techmove-backend-api techmove-frontend-web
+

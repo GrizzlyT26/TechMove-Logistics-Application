@@ -1,0 +1,10 @@
+﻿$root = 'C:\Users\andre\OneDrive\Desktop\School\TechMove-Logistics-Application'
+Set-Location $root
+
+@'
+**/bin/
+**/obj/
+.git/
+.vs/
+README.d
+
